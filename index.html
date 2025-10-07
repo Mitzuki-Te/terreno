@@ -4,8 +4,8 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"
-    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Terreno</title>
   
 </head>
 
@@ -16,9 +16,18 @@
   <p>Ubicación estratégica | Ideal para construcción de casas | Entorno natural</p>
 </header>
 
-<section class="hero">
-  <img src="terreno.jpg" alt="Terreno en venta">
+<section class="carousel">
+  <button class="carousel-btn prev">&#10094;</button>
+  <div class="carousel-track">
+    <img src="terreno1.jpg" alt="Terreno 1">
+    <img src="terreno2.jpg" alt="Terreno 2">
+    <img src="terreno3.jpg" alt="Terreno 3">
+    <img src="terreno4.jpg" alt="Terreno 4">
+  </div>
+  <button class="carousel-btn next">&#10095;</button>
 </section>
+
+
 
 <div class="container">
   <h2>Detalles del Terreno</h2>
@@ -55,5 +64,35 @@
 <footer>
   <p>&copy; 2025 Terrenos Residenciales. Todos los derechos reservados.</p>
 </footer>
+<script>
+  const track = document.querySelector('.carousel-track');
+  const images = document.querySelectorAll('.carousel-track img');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const imageWidth = images[0].clientWidth;
+    track.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < images.length - 1) {
+      currentIndex++;
+      updateCarousel();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  });
+
+  window.addEventListener('resize', updateCarousel);
+</script>
+
 </body>
 </html>
